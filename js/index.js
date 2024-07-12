@@ -71,7 +71,10 @@ const loadContent = async (Id = 1000) => {
                 const div = document.createElement("div");
                 div.innerHTML = `
                     <!-- thumbnail -->
-                    <div><img class="rounded-lg h-52 w-80" src="${content.thumbnail}" alt=""></div>
+                    <div class="relative">
+                        <img class="rounded-lg h-52 w-80" src="${content.thumbnail}" alt="">
+                        <p class="absolute right-1 bottom-3 bg-[#171717] text-white">${calculateTime(time)}</p>
+                    </div>
                     <!-- informations -->
                     <div class="mt-5 flex gap-3">
                         <!-- profile picture -->
@@ -108,7 +111,7 @@ function calculateTime(time)
     if(time == "") {
         return time;
     }
-    
+
     let fullTime = time / 3600; // full time in decimal
     let seconds = fullTime - Math.floor(fullTime); // extra seconds
     let hours = Math.floor(fullTime); // hours
