@@ -1,3 +1,4 @@
+// loading categories
 const loadCategories = async () => {
     const res = await fetch("https://openapi.programming-hero.com/api/videos/categories");
     let data = await res.json();
@@ -37,6 +38,7 @@ const loadContent = async (Id = 1000) => {
     // check if there is any data
     if (data.status == true) {
         data = data.data; // getting the data array
+        let i = 1;
 
         for (content of data) {
             // calculating the upload time
@@ -60,12 +62,13 @@ const loadContent = async (Id = 1000) => {
                         <div>
                             <p class="font-bold mb-2">${content.title}</p>
                             <p class="text-sm mb-2">${content.authors[0].profile_name} <span><img src="" alt=""></span></p>
-                            <p>${content.others.views}</p>
+                            <p id="views-${i}">${content.others.views}</p>
                         </div>
                     </div>
                 `
                 // div.classList = "w-80";
                 videosContainer.appendChild(div);
+                i++;
             }
             else {
                 const div = document.createElement("div");
@@ -85,12 +88,13 @@ const loadContent = async (Id = 1000) => {
                         <div>
                             <p class="font-bold mb-2">${content.title}</p>
                             <p class="text-sm mb-2 flex gap-2">${content.authors[0].profile_name} <span><img class="w-5 h-5" src="images/verify.png" alt=""></span></p>
-                            <p>${content.others.views}</p>
+                            <p id="views-${i}">${content.others.views}</p>
                         </div>
                     </div>
                 `
                 // div.classList = "w-80";
                 videosContainer.appendChild(div);
+                i++;
             }
         }
     }
@@ -105,10 +109,9 @@ const loadContent = async (Id = 1000) => {
         videosContainer.appendChild(div);
     }
 }
-
-function calculateTime(time)
-{
-    if(time == "") {
+// calculating time
+function calculateTime(time) {
+    if (time == "") {
         return time;
     }
 
@@ -119,4 +122,20 @@ function calculateTime(time)
     minutes = minutes.toFixed(0);
     const Time = `${hours}hrs ${minutes}min Ago`; // combining them together
     return Time;
+}
+
+function sort() {
+    // I have to sort by views
+    const videosContainer = document.getElementById("videos-container");
+    // algorithm
+    // for (let i = 0; i < num.length; i++) {
+    //     for(let j = 0; j < num.length - 1; j++) {
+    //         if(num[j] < num[j + 1])
+    //         {
+    //             let temp = num[j];
+    //             num[j] = num[j + 1];
+    //             num[j + 1] = temp;
+    //         }
+    //     }
+    // }
 }
