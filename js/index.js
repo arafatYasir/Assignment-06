@@ -62,7 +62,7 @@ const loadContent = async (Id = 1000) => {
                         <div>
                             <p class="font-bold mb-2">${content.title}</p>
                             <p class="text-sm mb-2">${content.authors[0].profile_name} <span><img src="" alt=""></span></p>
-                            <p id="views-${i}">${content.others.views}</p>
+                            <p>${content.others.views}</p>
                         </div>
                     </div>
                 `
@@ -88,7 +88,7 @@ const loadContent = async (Id = 1000) => {
                         <div>
                             <p class="font-bold mb-2">${content.title}</p>
                             <p class="text-sm mb-2 flex gap-2">${content.authors[0].profile_name} <span><img class="w-5 h-5" src="images/verify.png" alt=""></span></p>
-                            <p id="views-${i}">${content.others.views}</p>
+                            <p>${content.others.views}</p>
                         </div>
                     </div>
                 `
@@ -122,20 +122,4 @@ function calculateTime(time) {
     minutes = minutes.toFixed(0);
     const Time = `${hours}hrs ${minutes}min Ago`; // combining them together
     return Time;
-}
-
-function sort() {
-    // I have to sort by views
-    const videosContainer = document.getElementById("videos-container");
-    // algorithm
-    // for (let i = 0; i < num.length; i++) {
-    //     for(let j = 0; j < num.length - 1; j++) {
-    //         if(num[j] < num[j + 1])
-    //         {
-    //             let temp = num[j];
-    //             num[j] = num[j + 1];
-    //             num[j + 1] = temp;
-    //         }
-    //     }
-    // }
 }
